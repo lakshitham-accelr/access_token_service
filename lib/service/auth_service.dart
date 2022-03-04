@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:access_token_service/helper/auth_storage.dart';
 import 'package:access_token_service/model/token.dart';
+import 'package:access_token_service/service/token_refresh_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -33,6 +34,9 @@ class AuthService {
 
       /// Save token data to cache
       getIt.get<AuthStorage>().saveTokenToCache(tokenData);
+
+      /// Start refresh token circle
+      getIt.get<TokenRefreshService>().startTokenRefreshProcess();
 
       return tokenData;
     } else {

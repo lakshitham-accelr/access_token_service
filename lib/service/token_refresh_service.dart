@@ -14,10 +14,26 @@ class TokenRefreshService {
   void startTokenRefreshProcess() async {
     var cachedToken = await getIt.get<AuthStorage>().loadTokenFromCache();
 
+    print("******************");
+    print("******************");
+    print("Access token refreshing circle started !!!");
+    print("******************");
+    print("******************");
+
+    /// Stop if exist already running process
+    stopTokenRefreshProcess();
+
     if (!cachedToken.isEmpty()) {
       /// (cachedToken.expiresIn! - 600) = 3000s
       /// The token will be refreshed every 50 min
       _timer = Timer.periodic(Duration(seconds: cachedToken.expiresIn! - 600), (timer) async {
+
+        print("******************");
+        print("******************");
+        print("Access token refreshed !!!");
+        print("******************");
+        print("******************");
+
         await getIt.get<AuthService>().requestTokenByRefreshToken(cachedToken.refreshToken!);
       });
     }

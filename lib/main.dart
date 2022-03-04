@@ -39,7 +39,6 @@ class _MyAppState extends State<MyApp> {
           child: InkWell(
             onTap: () async {
               var token = await getIt.get<AuthStorage>().loadTokenFromCache();
-              getIt.get<TokenRefreshService>().startTokenRefreshProcess();
 
               if (token.isEmpty()) {
                 Navigator.push(
