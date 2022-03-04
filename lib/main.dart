@@ -50,6 +50,7 @@ class _MyAppState extends State<MyApp> {
               } else {
                 print("******************");
                 print("Token already exist");
+                print("expiresIn : ${token.expiresIn!}");
                 print("IssueTimeStamp : ${token.issueTimeStamp}");
                 print("ExpireTimeStamp : ${token.expireTimeStamp}");
                 print("******************");

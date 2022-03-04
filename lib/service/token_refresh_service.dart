@@ -24,10 +24,9 @@ class TokenRefreshService {
     stopTokenRefreshProcess();
 
     if (!cachedToken.isEmpty()) {
-      /// (cachedToken.expiresIn! - 600) = 3000s
-      /// The token will be refreshed every 50 min
-      _timer = Timer.periodic(Duration(seconds: cachedToken.expiresIn! - 600), (timer) async {
-
+      /// (cachedToken.expiresIn! / 3) = 1200s
+      /// The token will be refreshed every 20 min
+      _timer = Timer.periodic(Duration(seconds: cachedToken.expiresIn! ~/ 3), (timer) async {
         print("******************");
         print("******************");
         print("Access token refreshed !!!");
